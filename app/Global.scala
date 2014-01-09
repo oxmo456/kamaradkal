@@ -1,4 +1,3 @@
-import models.{Languages, Language}
 import play.api.{Application, GlobalSettings}
 import play.Logger
 
@@ -8,7 +7,6 @@ object Global extends GlobalSettings {
 
     Logger.info("onStart...")
 
-    //Languages.hello()
 
   }
 

@@ -1,11 +1,10 @@
 package controllers.api
 
 import play.api.mvc.{Action, Controller}
-import models.{Language => model}
 import play.api.libs.json.Json
+import models.{DefaultLanguageRepository, LanguagesRepository}
 
-object Languages extends Controller {
-
+class Languages(model: LanguagesRepository) extends Controller {
 
   def select(id: Option[Int]) = Action {
 
@@ -21,4 +20,7 @@ object Languages extends Controller {
   def insert() = play.mvc.Results.TODO
 
   def delete(id: Int) = play.mvc.Results.TODO
+
 }
+
+object Languages extends Languages(DefaultLanguageRepository())
