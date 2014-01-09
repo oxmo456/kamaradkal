@@ -1,7 +1,16 @@
-@(message: String)
+@(message: String, projects: List[(Int, String)])
 
-@main("Welcome to Play") {
+@main("index") {
 
-    @play20.welcome(message)
+    <h1>@message </h1>
+    @defining(controllers.api.routes.Languages.select(Some(54))) { selectLanguageURL =>
+        <p><a href="@selectLanguageURL">@selectLanguageURL</a></p>
+
+    }
+    <ul>
+    @for(p <- projects) {
+        <li>@p._1 : @p._2</li>
+    }
+    </ul>
 
 }
