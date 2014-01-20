@@ -7,7 +7,7 @@ import org.junit.runner._
 import play.api.test._
 import play.api.test.Helpers._
 import play.api.mvc.{SimpleResult, Controller}
-import models.LanguagesRepository
+import models.{Language, LanguagesRepository}
 import scala.concurrent.Future
 import org.specs2.specification.Scope
 
@@ -42,7 +42,10 @@ trait Context extends Scope {
 
   class Target() extends Controller with Languages {
     def model: LanguagesRepository = new LanguagesRepository {
-
+      def selectAll(): List[Language] = List(
+        Language(0, "fr"),
+        Language(1, "en")
+      )
     }
   }
 

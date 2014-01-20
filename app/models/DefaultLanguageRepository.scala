@@ -7,5 +7,5 @@ object DefaultLanguageRepository {
 }
 
 class DefaultLanguageRepository extends LanguagesRepository {
-
+  def selectAll(): List[Language] = ???
 }
