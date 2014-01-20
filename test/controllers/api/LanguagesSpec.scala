@@ -14,22 +14,25 @@ import org.specs2.specification.Scope
 @RunWith(classOf[JUnitRunner])
 class LanguagesSpec extends Specification {
 
-
-  "Languages" should {
-
+  "Languages.select" should {
 
     "select A" in new Context {
       val result: Future[SimpleResult] = languages.select(None).apply(FakeRequest())
-      val bodyText: String = contentAsString(result)
-      bodyText must be equalTo "Oops"
+      status(result) must equalTo(OK)
+      contentType(result) must beSome("application/json")
+      charset(result) must beSome("utf-8")
+      contentAsString(result) must be equalTo "\"Oops\""
     }
 
     "select B" in new Context {
       val id = 789
       val result: Future[SimpleResult] = languages.select(Some(id)).apply(FakeRequest())
-      val bodyText: String = contentAsString(result)
-      bodyText must be equalTo s"Ok $id"
+      status(result) must equalTo(OK)
+      contentType(result) must beSome("application/json")
+      charset(result) must beSome("utf-8")
+      contentAsString(result) must be equalTo "\"Ok " + id + "\""
     }
+
 
   }
 
