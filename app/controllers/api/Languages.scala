@@ -9,7 +9,10 @@ trait Languages {
   def model: LanguagesRepository
 
   def select(id: Option[Int]) = Action {
-    Ok("ok")
+    id match {
+      case Some(id) => Ok(s"Ok $id")
+      case None => Ok("Oops")
+    }
   }
 
   def update(id: Int) = Action {
