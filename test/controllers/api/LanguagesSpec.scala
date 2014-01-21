@@ -21,7 +21,7 @@ class LanguagesSpec extends Specification {
       status(result) must equalTo(OK)
       contentType(result) must beSome("application/json")
       charset(result) must beSome("utf-8")
-      contentAsString(result) must be equalTo "\"Oops\""
+      contentAsJson(result).asOpt[String] must beSome("Oops")
     }
 
     "select B" in new Context {
@@ -30,7 +30,7 @@ class LanguagesSpec extends Specification {
       status(result) must equalTo(OK)
       contentType(result) must beSome("application/json")
       charset(result) must beSome("utf-8")
-      contentAsString(result) must be equalTo "\"Ok " + id + "\""
+      contentAsJson(result).asOpt[String] must beSome("Ok " + id)
     }
 
 
